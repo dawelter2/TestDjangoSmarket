@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Usuário{% endblock %}
+{% block body_header %}{{ user.name }}{% endblock %}
+
+{% block content %}
+<table class="minimalistBlack">
+    <thead>
+        <td></td>
+        <td>Descrição</td>
+        <td>Status</td>
+        <td></td>
+        <td></td>
+    </thead>
+    {% for task in tasks %}
+    <tr>
+        <td>
+            {{ task.id }}
+        </td>
+        <td>
+            {{ task.description }}
+        </td>
+        <td>
+            {% if task.status %}
+            {% load static %} <img src="{% static "images/done.png" %}" alt="Feito">
+            {% else %}
+            {% load static %} <img src="{% static "images/pending.png" %}" alt="Pendente">
+            {% endif %}
+        </td>
+        <td>
+            <a href="update_task/{{ task.id }}/">Alterar</a>
+        </td>
+        <td>
+            <a href="remove_task/{{ task.id }}/">Deletar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<center><a href="/user/{{ user.id }}/create_task/">Adicionar Nova tarefa</a></center>
+{% endblock %}

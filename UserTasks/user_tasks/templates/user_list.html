@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de usuários{% endblock %}
+{% block body_header %}Lista de usuários{% endblock %}
+
+{% block content %}
+<table class="minimalistBlack">
+    <thead>
+        <td>ID</td>
+        <td>nome</td>
+        <td></td>
+        <td></td>
+    </thead>
+    {% for user in users %}
+    <tr>
+        <td>
+            {{ user.id }}
+        </td>
+        <td>
+            {{ user.name }}
+        </td>
+        <td>
+            <a href="/user/{{user.id}}/">Editar</a>
+        </td>
+        <td>
+            <a href="/remove_user/{{user.id}}/">Remover</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<center><a href="/create_user/">Adicionar Novo Usuario</a></center>
+{%endblock%}
